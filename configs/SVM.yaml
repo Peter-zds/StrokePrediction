@@ -1,0 +1,8 @@
+MODEL:
+  ARCHITECTURE: "SVM_Model"
+  SVM:
+    DECISION_FUNCTION_SHAPE : 'ovo'
+    KERNEL : 'linear'
+    C : 4
+    GAMMA : 1 / 30
+    PROBABILITY : True
