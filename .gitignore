@@ -1,2 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
+core/__pycache__/
+core/config/__pycache__/
+core/dataloader/__pycache__/
+core/models/__pycache__/
+*.csv
