@@ -5,12 +5,8 @@
 # @File    : svm_model.py
 # @Software: PyCharm
 
-import os
 from .based_model import BasedModel
-from sklearn.externals import joblib
 from sklearn.neighbors import KNeighborsClassifier
-import matplotlib.pyplot as plt
-from sklearn.model_selection  import cross_val_score
 
 class KNN_Model(BasedModel):
     def __init__(self, cfg):
@@ -38,10 +34,3 @@ class KNN_Model(BasedModel):
         prediction = self.model.predict(test_data)
         return prediction
 
-    def save_model(self):
-        path = os.path.join(self.cfg.MODEL.SAVE_PATH, self.model_name + ".m")
-        joblib.dump(self.model, path)
-
-    def load_model(self):
-        path = os.path.join(self.cfg.MODEL.SAVE_PATH, self.model_name + ".m")
-        self.model = joblib.load(path)

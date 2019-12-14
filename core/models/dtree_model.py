@@ -5,9 +5,7 @@
 # @File    : svm_model.py
 # @Software: PyCharm
 
-import os
 from .based_model import BasedModel
-from sklearn.externals import joblib
 from sklearn import tree
 
 class DTree_Model(BasedModel):
@@ -37,10 +35,3 @@ class DTree_Model(BasedModel):
         prediction = self.model.predict(test_data)
         return prediction
 
-    def save_model(self):
-        path = os.path.join(self.cfg.MODEL.SAVE_PATH, self.model_name + ".m")
-        joblib.dump(self.model, path)
-
-    def load_model(self):
-        path = os.path.join(self.cfg.MODEL.SAVE_PATH, self.model_name + ".m")
-        self.model = joblib.load(path)

@@ -1,0 +1,39 @@
+DATA_LOADER:
+  TYPE : "Csv_Dataloader"
+  DATA_PATH : "../dataset/mrs12m807.csv"
+
+MODEL:
+  ARCHITECTURES : ["SVM_Model", "DNN_Model", "DTree_Model", "KNN_Model","NaiveBayes_Model"]
+  ARCHITECTURE: "DNN_Model"
+  SAVE_PATH : "../pre_trained_models"
+
+  SVM:
+#    DECISION_FUNCTION_SHAPE : 'ovo'
+    KERNEL : 'linear'
+    C : 2
+#    GAMMA : 0.0333
+    PROBABILITY : True
+
+  DNN:
+    INPUT: 28
+    HIDDEN_LAYER_1: 128
+    HIDDEN_LAYER_2: 128
+    HIDDEN_LAYER_3: 56
+    OUTPUT: 2
+
+    BATCH_SIZE: 10
+    LR: 0.001
+    EPOCH: 20
+
+  DTREE:
+    RANDOM_STATE: 30
+    SPLITTER: "random"
+    MAX_DEPTH: 5
+    MIN_SAMPLES_LEAF: 10
+    MIN_SAMPLES_SPLIT: 10
+
+  KNN:
+    N_NEIGHBORS: 15
+    WEIGHTS: 'uniform'
+    ALGORITHM: 'ball_tree'
+    METRIC: 'minkowski'

@@ -58,6 +58,8 @@ class DNN_Model(BasedModel):
                     accuracy = self.get_accuracy(val_data, val_label)
                     print('Epoch: ', epoch, '| train loss: %.4f' % loss.data.numpy(),
                           '| test accuracy: %.2f' % accuracy)
+                    if accuracy >= 0.78:
+                        break
 
     def get_accuracy(self, test_data, test_label):
         test_output = self.model(test_data)
@@ -77,8 +79,8 @@ class DNN_Model(BasedModel):
         return pred_y
 
     def save_model(self):
-        path = os.path.join(self.cfg.MODEL.SAVE_PATH, self.model_name + "_param.pkl")
-        torch.save(self.model.state_dict(),path)
+        path = os.path.join(self.cfg.MODEL.SAVE_PATH, self.model_name + self.get_data_name()+".pkl")
+        torch.save(self.model,path)
     def load_model(self):
-        path = os.path.join(self.cfg.MODEL.SAVE_PATH, self.model_name + "_param.pkl")
-        self.model.load_state_dict(torch.load(path))
+        path = os.path.join(self.cfg.MODEL.SAVE_PATH, self.model_name + self.get_data_name()+".pkl")
+        self.model = torch.load(path)

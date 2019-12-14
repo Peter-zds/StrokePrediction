@@ -4,6 +4,9 @@
 # @Author  : Peter Zheng
 # @File    : train.py
 # @Software: PyCharm
+import sys
+sys.path.append('../')
+import argparse
 from core.models import build_classification_model
 from core.config import cfg
 from core.dataloader import make_dataloader
@@ -34,4 +37,16 @@ def train(cfg):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="PyTorch Object Detection Training")
+    parser.add_argument(
+        "--config-file",
+        default="",
+        metavar="FILE",
+        help="path to config file",
+        type=str,
+    )
+    args = parser.parse_args()
+    if args.config_file is not '':
+        cfg.merge_from_file(args.config_file)
+    cfg.freeze()
     train(cfg)

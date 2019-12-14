@@ -4,6 +4,9 @@
 # @Author  : Peter Zheng
 # @File    : based_model.py
 # @Software: PyCharm
+import os
+from sklearn.externals import joblib
+
 class BasedModel:
     def __init__(self,cfg):
         self.model_name = "BasedModel"
@@ -25,7 +28,12 @@ class BasedModel:
         pass
 
     def save_model(self):
-        pass
+        path = os.path.join(self.cfg.MODEL.SAVE_PATH, self.model_name + self.get_data_name() + ".m")
+        joblib.dump(self.model, path)
 
     def load_model(self):
-        pass
+        path = os.path.join(self.cfg.MODEL.SAVE_PATH, self.model_name + self.get_data_name() + ".m")
+        self.model = joblib.load(path)
+    def get_data_name(self):
+        file_name = '-'+ self.cfg.DATA_LOADER.DATA_PATH.split('/')[-1].split('.')[0]
+        return  file_name

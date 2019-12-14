@@ -1,0 +1,12 @@
+MODEL:
+  ARCHITECTURE: "SVM_Model"
+  SVM:
+    DECISION_FUNCTION_SHAPE : 'ovo'
+    KERNEL : 'linear'
+    C : 4
+    GAMMA : 0.0333
+    PROBABILITY : True
+
+DATA_LOADER:
+  TYPE : "Csv_Dataloader"
+  DATA_PATH : "../dataset/mrs12m807.csv"
