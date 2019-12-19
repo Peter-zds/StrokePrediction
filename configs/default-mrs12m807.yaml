@@ -4,26 +4,27 @@ DATA_LOADER:
 
 MODEL:
   ARCHITECTURES : ["SVM_Model", "DNN_Model", "DTree_Model", "KNN_Model","NaiveBayes_Model"]
-  ARCHITECTURE: "DNN_Model"
+  ARCHITECTURE: "SVM_Model"
   SAVE_PATH : "../pre_trained_models"
+  CROSS_VAL_RESULTS_PATH : "../cross_val_results/"
 
   SVM:
-#    DECISION_FUNCTION_SHAPE : 'ovo'
+    DECISION_FUNCTION_SHAPE : 'ovo'
     KERNEL : 'linear'
     C : 2
-#    GAMMA : 0.0333
+    GAMMA : 0.5
     PROBABILITY : True
 
   DNN:
     INPUT: 28
-    HIDDEN_LAYER_1: 128
-    HIDDEN_LAYER_2: 128
-    HIDDEN_LAYER_3: 56
+    HIDDEN_LAYER_1: 56
+    HIDDEN_LAYER_2: 56
+    HIDDEN_LAYER_3: 28
     OUTPUT: 2
 
-    BATCH_SIZE: 10
-    LR: 0.001
-    EPOCH: 20
+    BATCH_SIZE: 20
+    LR: 0.01
+    EPOCH: 200
 
   DTREE:
     RANDOM_STATE: 30

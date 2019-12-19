@@ -22,13 +22,13 @@ class Csv_Dataloader:
         data = data_frame.values
         return data
 
-    def split_data_lable(self, dataset):
+    def split_data_lable(self):
+        dataset = self.read_csv_as_numpy(self.cfg.DATA_LOADER.DATA_PATH)
         data = dataset[:, :-2]
         label_value = dataset[:, -2]
         label_classify = dataset[:, -1]
         return data, label_value, label_classify
 
     def load_data(self):
-        dataset = self.read_csv_as_numpy(self.cfg.DATA_LOADER.DATA_PATH)
-        data, label_value, label_classify = self.split_data_lable(dataset)
+        data, label_value, label_classify = self.split_data_lable()
         return train_test_split(data, label_classify, test_size=0.2, random_state=42)

@@ -17,8 +17,6 @@ class KNN_Model(BasedModel):
                                           metric=cfg.MODEL.KNN.METRIC)
         self.model_name = cfg.MODEL.ARCHITECTURE
 
-    def data_preprocess(self, train_data, train_label, val_data, val_label):
-        return train_data, train_label, val_data, val_label
 
     def train(self, train_data, train_label, val_data=None, val_label=None):
         self.model.fit(train_data,train_label)
